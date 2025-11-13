@@ -44,5 +44,6 @@ class PageController extends Controller
         return view('users', compact('users'));
 
     }
+    
 
 }

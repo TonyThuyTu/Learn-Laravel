@@ -1,18 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-</head>
+@extends('layouts.app')
 
-<body>
-    <div>
-        <h1>Welcome to my Website</h1>
-        <p>This Tony speaking!</p>
-        <a href="{{route('about.page')}}">About</a>
-        <a href="{{ route( 'contact.page' ) }}">Contact</a>
-        <a href="{{ route( 'users.page' ) }}">Users</a>
-    </div>
-</body>
-</html>
+@section('title', 'Home Page')
+
+@section('content')
+    <h2>Welcome to my home page!</h2>
+    <p>This page is using the shared layout.</p>
+@endsection
