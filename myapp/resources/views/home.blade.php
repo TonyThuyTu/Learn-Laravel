@@ -12,6 +12,7 @@
         <p>This Tony speaking!</p>
         <a href="{{route('about.page')}}">About</a>
         <a href="{{ route( 'contact.page' ) }}">Contact</a>
+        <a href="{{ route( 'users.page' ) }}">Users</a>
     </div>
 </body>
 </html>

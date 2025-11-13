@@ -21,5 +21,11 @@ use App\Http\Controllers\PageController;
 // })->name('contact.page');
 
 Route::get('/', [PageController::class, 'home'])->name('home.page');
+
 Route::get('/about', [PageController::class, 'about'])->name('about.page');
+
 Route::get('/contact', [PageController::class, 'contact'])->name('contact.page');
+
+Route::get('/sum/{a}/{b}', [PageController::class, 'sum'])->name('sum.page');
+
+Route::get('/users', [PageController::class, 'users'])->name('users.page');
