@@ -18,6 +18,14 @@ class PageController extends Controller
 
     }
 
+    public function skills() {
+        
+        $skill = ['VueJs', 'Laravel', 'Js', 'NodeJs', 'NextJs'];
+
+        return view('skills', ['skills' => $skill]);
+
+    }
+
     public function contact() { 
         
         return view('contact');
