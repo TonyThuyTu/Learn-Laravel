@@ -25,6 +25,17 @@ class PageController extends Controller
 
     }
 
+    public function saveContact(Request $request ) {
+
+        $contact = $request->input('contact');
+
+        // return 'Your email: ' . $contact;
+        return redirect()
+            ->back()
+            ->with('success', 'email send successfully!');
+
+    }
+
     public function sum($a, $b) {
 
         $sum = $a + $b;
