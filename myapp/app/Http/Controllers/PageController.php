@@ -19,11 +19,12 @@ class PageController extends Controller
 
     }
 
-    public function contact() {
-
-        return view('contact');
-
+    public function contact()
+    {
+        $contacts = \App\Models\Contact::all();
+        return view('contact', compact('contacts'));
     }
+
 
     public function saveContact(Request $request ) {
 
