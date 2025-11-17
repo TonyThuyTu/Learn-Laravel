@@ -7,59 +7,72 @@ use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    // List + Create Form
     public function index()
     {
-        //
+        $tasks = Task::orderBy('created_at', 'desc')->get();
+        return view('task', compact('tasks'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
+    // Store new task
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title'       => 'required',
+            'description' => 'required',
+        ]);
+
+        Task::create([
+            'title'       => $request->title,
+            'description' => $request->description,
+            'is_done'     => 0,
+        ]);
+
+        return redirect()->route('tasks.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Task $task)
+    // Show by ID
+    public function show($id)
     {
-        //
+        $task = Task::findOrFail($id);
+        return view('tasks.show', compact('task'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Task $task)
+    // Edit page
+    public function edit($id)
     {
-        //
+        $task = Task::findOrFail($id);
+        return view('tasks.edit', compact('task'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Task $task)
+    // Update task
+    public function update(Request $request, $id)
     {
-        //
+        $task = Task::findOrFail($id);
+
+        $task->update([
+            'title'       => $request->title,
+            'description' => $request->description,
+        ]);
+
+        return redirect()->route('tasks.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Task $task)
+    // Toggle done/pending
+    public function toggle($id)
     {
-        //
+        $task = Task::findOrFail($id);
+        $task->update([
+            'is_done' => !$task->is_done
+        ]);
+
+        return redirect()->route('tasks.index');
+    }
+
+    // Delete task
+    public function destroy($id)
+    {
+        Task::findOrFail($id)->delete();
+        return redirect()->route('tasks.index');
     }
 }
